@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SAT Competition</title>
+<link rel="stylesheet" href="main.css" type="text/css">
+<link rel="icon" type="image/x-icon" href="doge2.ico">
+<script src="https://www.w3schools.com/lib/w3.js"></script>
+<style>a#tracks { color:var(--link-color-2); }</style>
+</head>
+
+<body>
+<div class="main">
+  <div class="navigation" w3-include-html="navigation.html"></div>
+  <div class="heading" w3-include-html="heading.html"></div>
+  <script>w3.includeHTML();</script> 
+
+  <div class="content">
+	<h2>Competition Tracks</h2>
+		
+	<h3 id="main">Main Track</h3> 
+		Main track is the track for sequential SAT solvers.
+		This track as well as its subtracks will be run on the <a href="https://www.starexec.org/starexec/public/about.jsp">StarExec cluster</a>. 
+		Consider the <a href="rules.html">general submission guidelines</a> and the <a href="starexec.html">StarExec submission instructions</a>.
+		We will use 300-600 benchmark problems, the time limit will be 5000 seconds.
+                Solvers in all tracks will be ranked based on the PAR-2 score, 
+                which is the sum of the runtime plus twice the timeout for unsolved instances. 
+		The solvers will be allowed to use up to 128GB of RAM.
+		All solvers participating in the Main track are required to provide certificates in both SAT and UNSAT cases. 
+		Like last year, we will offer to choose from different proof checkers.
+		For more information about the UNSAT certificates see <a href="certificates.html">this page</a>.
+		
+	<h4 id="hack">CaDiCaL 1.5.3 Hacks</h4>
+		We encourage CaDiCaL Hack authors to participate in the Main track. 
+		A prize will be awarded to the best CaDiCaL hack.
+		<p>
+		Hack tracks have been part of many SAT Competition since 2009.
+		The motivation of hack tracks is two-fold. 
+		On the one hand, we want to lower the threshold for Master and PhD students to enter the SAT Competition with new and innovative ideas. 
+		On the other hand, the aim is to see how far the performance of CaDiCaL can be improved by making only minor changes to its source code. 
+		Competing with minor hacks helps the community to isolate the actual causes of improvements. 
+		Thus, we strongly encourage all participants of the Main track (including non-students) to participate with a "hacked" CaDiCaL solver.
+		</p>
+		<p>
+		Participants in the CaDiCaL Hack track should use the source of the release version of 
+		<a href="https://github.com/arminbiere/cadical/releases/tag/rel-1.5.3">CaDiCaL 1.5.3</a>. 
+		In order to qualify as a CaDiCaL Hack, the diff between the patched and modified sources of CaDiCaL 1.5.3 has to be less than 1000 non-space characters.
+		You can use our <a href="downloads/editdistance.zip">edit distance tool</a> on all modified files to count the number of modifications.
+		</p>
+	
+	<h4 id="nolimits">No-Limits Track</h4>
+		If your solver does not generate SAT or UNSAT certificates or if you do not want to publish your source code, 
+		you can still submit your solver to the No-Limits track. 
+		<p>Each solver submitted to the Main track will automatically participate in the No-Limits track. </p>
+		<p>The No-Limits track will only be evaluated with respect to the <i>new</i> benchmarks instances which are submitted to this SAT Competition.</p>
+		
+	<h3 id="parallel">Parallel Track</h3>
+		The Parallel track will be run on Amazon Web Services (AWS).
+		Consider the <a href="rules.html">general submission guidelines</a> and the <a href="aws.html">AWS submission instructions</a>.
+		All solvers participating in the Parallel track are required to provide a model in the SAT case.
+		The solvers participating in this track will be executed with a wall-clock time limit of 5000 seconds.
+		Each solver will be run an a single AWS machine of the type m4.16xlarge, which has 64 virtual cores and 256GB of memory. 
+		More details about m4.16xlarge nodes can be found 
+		<a href="https://aws.amazon.com/about-aws/whats-new/2016/09/introducing-new-m4-instance-size-m4-16xlarge-and-new-region-availability-of-m4-instances/">here</a>.
+		
+	<h3 id="cloud">Cloud Track</h3>
+		The Cloud track will evaluate the effectiveness of parallel SAT solvers to run in a distributed manner. 
+		This track will be run on Amazon Web Services(AWS).
+		Consider the <a href="rules.html">general submission guidelines</a> and the <a href="aws.html">AWS submission instructions</a>.
+		All solvers participating in the Cloud track are required to provide a model in the SAT case.
+		The solvers participating in this track will be executed with a wall-clock time limit of 1000 seconds running on 100 m4.4xlarge machines in parallel. 
+		Each m4.4xlarge machine has 16 virtual CPUs and 64 GB memory. 
+		Communication between the machines is possible using MPI and SSH.
+  </div>
+</div>
+</body>
+</html>

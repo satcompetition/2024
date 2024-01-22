@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SAT Competition</title>
+<link rel="stylesheet" href="main.css" type="text/css">
+<link rel="stylesheet" href="template.css" type="text/css">
+<link rel="icon" type="image/x-icon" href="doge2.ico">
+<script src="https://www.w3schools.com/lib/w3.js"></script>
+<style>a#track-incremental { color:#e17861; }</style>
+</head>
+
+<body>
+<div class="main">
+  <div class="navigation" w3-include-html="navigation.html"></div>
+  <script>w3.includeHTML();</script> 
+
+  <div class="content">
+    <h1 class='tpl-name'></h1>
+	<h2><a name="api">Incremental Library Track</a></h2>
+	
+	Many applications of SAT are based on solving a sequence of incrementally generated SAT instances.
+	In such scenarios the SAT solver is invoked multiple times on the same formula under different assumptions.
+	Also the formula is extended by adding new clauses and variables between the invocations. It is possible
+	to solve such problem by solving the incrementally generated instances independently, however this might be
+	very inefficient compared to an incremental SAT solver, which can reuse knowledge acquired while solving the previous
+	instances (for example the learned clauses).
+	
+	<p>
+	There are several SAT solvers that support incremental SAT solving, however each has its own interface, which
+	differs from the others. That makes comparing them difficult. Our goal is to have a single interface implemented by
+	many different solvers. Users who want to use incremental SAT solvers in their applications would also benefit
+	from such an interface. Applications could be written without selecting the concrete incremental SAT solver
+	in advance and migrating to a different solver would be just a matter of updating linking parameters.
+	</p>
+
+	<h4>The Incremental Interface - IPASIR</h4>
+	<p>
+	The name IPASIR is the reversed acronym for "Re-entrant Incremental Satisfiability Application Program Interface".
+	With an additional space and question mark it can also serve as an expression for offering a brewed beverage to a gentleman.
+	The interface was designed to have the following properties:
+	<ul>
+	<li>Easy to implement, so that SAT solver developers would be willing to support it.</li>
+	<li>Easy to use, so that anyone can easily build SAT based applications (can be used for educational purposes).</li>
+	<li>Universal and powerful, so that it can be used for a broad range of industrial and research applications.</li>
+	</ul>
+	The interface consists of only 9 functions which are inspired by the incremental interfaces of <a href="http://fmv.jku.at/picosat/">PicoSAT</a>
+	and <a href="http://fmv.jku.at/lingeling/">Lingeling</a>. It is defined in the form of a C language header file <a href="downloads/ipasir.h">ipasir.h</a>.
+	Please refer to the comments in the header file for more information about the specifications of the interface.
+	We have prepared a package (<a href="downloads/ipasir.zip">ipasir.zip</a>, also available via <a href="https://github.com/biotomas/ipasir">GitHub</a>) containing two SAT solvers adapted to IPASIR and a few simple IPASIR based applications.
+	</p>
+
+	<h4>Solver Submission</h4>
+	In order to participate in the Incremental Library Track please follow these steps:
+	<ol>
+	<li>Implement all the functions defined in the <a href="downloads/ipasir.h">ipasir.h</a> header file.</li>
+	<li>Create a directory with your code and makefile following the style of the three example solvers in
+	the <a href="downloads/ipasir.zip">ipasir.zip</a> package. Placing your directory in the "ipasir/sat/" directory and
+	issuing "make" in the "ipasir/" directory should result in a successful build of all the example
+	applications with your solver (and the original example solvers). See the README files located in the package
+	for more information.</li>
+	<li>Add the system description of your solver (see <a href="rules.html">general rules</a>) into the directory.</li>
+	<li>Pack your directory into a zip file and send it to organizers@satcompetition.org</li>
+	</ol>
+
+	<h4>Benchmark Submission</h4>
+	The benchmarks for the Incremental Library Track are command line applications that solve
+	a problem specified by an input file given as a parameter to the application.
+	Please take a look at the example applications in the <a href="downloads/ipasir.zip">ipasir.zip</a> package.
+	To create your own benchmark applications follow the style of the  directories in the "ipasir/app/" directory.
+	<p>
+	Prepare your application directory in such a way that placing it in the "ipasir/app/" directory and
+	issuing "make" in the "ipasir/" directory results in a successful build of your application (along with the original example applications)
+	with all the solvers in the package. Follow the instruction in the README files found in the <a href="downloads/ipasir.zip">ipasir.zip</a> package.
+	As the last step add a short text document that describes your application into
+	your directory, pack it into a zip file and send it to organizers@satcompetition.org.
+	</p>
+
+	<h4>Benchmark Selection and Evaluation of Solvers</h4>
+	The benchmarks used for the competition will be selected by the organizers. The solvers will be evaluated by
+	the number of problem instances (application + input pairs) solved within a given time limit.
+  </div>
+</div>
+</body>
+</html>

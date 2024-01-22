@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SAT Competition</title>
+<link rel="stylesheet" href="main.css" type="text/css">
+<link rel="icon" type="image/x-icon" href="doge2.ico">
+<script src="https://www.w3schools.com/lib/w3.js"></script>
+<style>a#starexec { color:var(--link-color-2); }</style>
+</head>
+
+<body>
+<div class="main">
+  <div class="navigation" w3-include-html="navigation.html"></div>
+  <div class="heading" w3-include-html="heading.html"></div>
+  <script>w3.includeHTML();</script> 
+
+  <div class="content">
+	<h2>Submission Instructions</h2>
+	<p>
+	All sequential tracks will be run on the <a href="https://www.starexec.org/starexec/public/about.jsp">StarExec-cluster</a>. 
+	The solvers will be executed with a time limit of 5000 seconds and memory limit of 128GB.
+	The StarExec system will be also used for submitting the solvers.
+	</p>
+
+	<h2>Usage of StarExec</h2>
+
+	<h4>Getting an acount</h4>
+	<ol>
+		<li><a href="https://www.starexec.org/starexec/public/registration.jsp">Register</a> 
+			for an account in the <b>SAT community</b> (unless you are already registered).</li>
+		<li>Wait until one of the SAT community leaders approves your request 
+			(should not take more than 24h).</li>
+		<li>If you register late <q>in the season</q>, it may also be necessary to add your new user account to the respective spaces mentioned below. 
+			Please send an email to the organiziers if you do not seem to be able to find the necessary spaces on StarExec. 
+			(Also note that you might need to log out of StarExec and then log in again to see such changes taking effect.)
+	</ol>
+
+	<h4>Uploading a solver for testing</h4>
+	<ol>
+		<li>The solver is submitted by uploading its source code and a build script. The solvers are then compiled by StarExec.</li>
+		<li>The uploaded file must have a special format (see the 
+		<a href="https://wiki.uiowa.edu/display/stardev/User+Guide#UserGuide-Uploading">
+		StarExec User Guide</a> for details, here is an <a href="downloads/mini.zip">example with minisat</a>). 
+		Please follow the required directory structure precisely otherwise StarExec will not be able to compile and run your solver.
+		</li>
+		<li>Login to StarExec and click Spaces->Explore (on the top) then on the left open root->SAT->Sat2024Testing</li>
+		<li>At the bottom of page click "upload solver" to open the upload dialog.</li>
+		<li>Click "Browse" and select the zip file with your solvers code, enter the solver name, change downloadable to "no" (otherwise everyone can see you source code) and click "upload".</li>
+	</ol>
+
+	<h4 id="testing">Testing your solver</h4>
+	<p>We put a few testing instances in the Sat2024Testing space which you can use if you uploaded your solver to this space. To run a test:</p>
+	<ol>
+		<li>Go to the root->SAT->Sat2024Testing space.</li>
+		<li>Unfold "n jobs (+)" and click "create job". This opens a page where you don't need to change anything so just click "next".
+	   <b>Use the preprocessor "xcat" to decompress benchmarks (even if your solver can decompress).</b>
+	  </li>
+		<li>On the next page select the "choose" option (for the solver), on the next page select the "all" option (for the testing instances)</li>
+		<li>A page with all solvers (and their configurations) comes up, select the solver you want to run and click "submit" at the bottom of the page.</li>
+		<li>You can check out the status and results of your test job by clicking on Jobs on the top and selecting your job.</li>
+	</ol>
+
+	<h4>Outputing proofs in the Main Track</h4>
+	<p>The proof for UNSAT instances must be written in a file called <b>proof.out</b> and placed in the folder which your start script gets as the second parameter ($2). Thefore
+	your starexec_run_default should contain something like 
+		<pre>#!/bin/bash
+		./solver $1 --proof-file=$2/proof.out
+		</pre>
+	</p>
+	<p>
+		Note, that the answer line ("s SATISFIABLE" and "s UNSATISFIABLE") and the solution in case of a satisfiable instance (lines starting with "v") 
+		must still go to stdout (not into "proof.out").
+	</p>
+
+	<h4 id="testing2">Testing proof output validation</h4>
+	<p>
+	To test that your proofs are correctly validated by the proof checker of your choice, 
+	you can use the script <a href="downloads/starexec.py">starexec.py</a> to generate a job xml-file for StarExec.
+	The script takes the following arguments:
+	<pre>
+		./starexec.py test_$solver -p $pipeline -s $solver_id -b 15861098 15861099 15861100 15861101 15861102 15861103 > test.xml
+	</pre>
+	Here, $solver is the name of your solver, $pipeline is the name of the proof-checker pipeline you want to use, 
+	and $solver_id is the id of your solver configuration as found on StarExec (<a href="downloads/confId.png">example here</a>).
+	For $pipeline you can insert any of the following strings: 
+	<ul>
+		<!-- <li>drat, if you want to use the DRAT-trim based tool-chain and output proofs in textual format</li>
+		<li>dratbin, if you want to use the DRAT-trim based tool-chain and output proofs in binary format</li> -->
+		<li>dpr, if you want to use the DPR-trim based tool-chain and output proofs in textual format</li>
+		<li>dprbin, if you want to use the DPR-trim based tool-chain and output proofs in binary format</li>
+		<li>grat, if you want to use the GRAT based tool-chain and output proofs in textual format</li>
+		<li>gratbin, if you want to use the GRAT based tool-chain and output proofs in binary format</li>
+		<li>veripb, if you want to use the VeriPB based tool-chain</li>
+	</ul>
+
+	Zip the resulting test.xml and upload the result to the testing space Sat2023Testing using Jobs/"upload job xml" button.
+	This will run your solver on the six testing benchmarks (15861098, 15861099, 15861100, 15861101, 15861102, and 15861103) out of which three are unsatisfiable.
+	When inspecting the finished job, do not forget to check both "job information" and (the more detailed) "job output".
+	</p>
+
+	<h4>Uploading the final version of your solver</h4>
+	<p>
+	The submission of the final version of a solver is essentially the same as uploading the solver for testing (see above).
+	To submit the final version of your solver upload it to the space root->SAT->SatComp24.
+	</p>
+	<p>
+	Don't forget to select "downloadable:no" when uploading your solver to prevent other participants from seeing your source code before the start of the competition.
+	After the solver submission deadline we will ask all the participants to update the downloadable option to "downloadable:yes". This will make the source code
+	visible to the organizers and all the participants. The participants must comply with this request in order to participate in the competition (except for the No Limits Track).
+	</p>
+
+	<h4>Emailing your System Description Document and Benchmarks to the organizers</h4>
+	<p>After you have submitted the final version of your solver send an email to the organizers (organizers@satcompetition.org) containing your system description document
+	 and 20 benchmark problems (see <a href="rules.html">General Rules</a> for more information). </p>
+
+	<!--
+	<ol>
+	<li></li>
+	<li></li>
+	</ol>
+
+
+
+	<ul>
+	<li>The uploaded file must have a special format (see the 
+	<a href="https://wiki.uiowa.edu/display/stardev/User+Guide#UserGuide-Uploading">
+	StarExec User Guide</a> for details, here is an <a href="downloads/minisat220.zip">example with minisat</a>).
+	</li>
+	<li>The binaries should be statically linked in order to avoid problems with missing libraries.</li>
+	<li>The binaries must be compatible with the 
+	<a href="https://www.starexec.org/starexec/public/machine-specs.txt">StarExec machine specifications</a>.</li>
+	<li>We recommend to select "run test job = yes" with "setting profile = SAT" when uploading a solver. This creates a test job that
+	runs the newly upladed solver on a random 3SAT formula with 100 variables (10 seconds time limit). If the test job fails
+	your solver binary is probably not compatible with starexec.</li>
+	<li>This <a href="https://www.starexec.org/vmimage/">virtual machine image</a> that matches StarExec
+	can be useful for compiling the proper binary.</li>
+	</ul>
+	</li>
+	<li>Send an email to satrace2015@googlegroups.com with your system description (see <a href="#general">general rules</a>) 
+	and (optionally) your source code.</li>
+	</ol>
+	-->
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+\documentclass{article}
+
+\bibliographystyle{plainurl}
+
+\usepackage[T1]{fontenc} 
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[ruled,linesnumbered,vlined]{algorithm2e}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{tabu}
+\usepackage{todonotes}
+\usepackage{tabto}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{caption} 
+%\usepackage[left=4cm, right=4cm]{geometry}
+
+
+\title{Call for Verified Proof Checkers}
+\author{Please send your proposal to\\[.3em] \mbox{\url{organizers@satcompetition.org}}\\[.3em] by 15th~of~January~2023.}
+\date{}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+We are looking for proposals for new proof checkers for the international SAT competitions. 
+Your proposal should specify a proof format and include an actual proof checker implementation for that format.
+Please provide an empirical evaluation of the performance of your proof checker implementation.
+Your proof checker should run in polynomial time in the size of the formula and proof. 
+In this regard, your proposal should address the \emph{complexity} of the proposed proof system. 
+
+The proposed checker or checker tool chain must be \emph{formally verified}. 
+If you propose a tool chain with preprocessors, it is sufficient to verify only the relevant tools in the chain. 
+In your proposal, you should elaborate on the verified properties and the tools or methods used to verify them.
+References to previous publications that support your statements are helpful.
+
+
+%\subsubsection*{Proof-Complexity and Performance}
+%\label{sec:perf}
+%This includes an brief overview of its relationship to other popular proof systems such as DRAT. %~\cite{Wetzler:2014:DRATtrim}. 
+%Clearly specify the benefits and limitations of the proposed proof system in terms of worst-case lower bounds on proof lengths.
+%The evaluation should contain a comparison to \texttt{DRAT-trim}~\cite{Wetzler:2014:DRATtrim}~\cite{Tan:2021:CakeLPR}.
+%Briefly outline the underlying proof system which is used by the proposed checker. 
+
+
+%\subsubsection*{Compatibility and Genericity}
+%\label{sec:comp}
+% and on how well it \emph{integrates} into existing infrastructure and systems.
+%The proof format should be easy to adopt by future SAT solvers.
+%You should report on how well the proposed checker integrates into the existing pre-dominant infrastructures. 
+%A statement on the compatibility of the proposed proof format should encompass if it subsumes DRAT and how much it costs to translate between the two.
+%You should also elaborate on the genericity of the proposed proof system, i.e., the extent to which the proposed checker can be used in domains other than SAT. 
+
+%\bibliography{cfvpc}
+
+
+\end{document}
+
+
+
+
