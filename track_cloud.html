@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SAT Competition</title>
+<link rel="stylesheet" href="main.css" type="text/css">
+<link rel="stylesheet" href="template.css" type="text/css">
+<link rel="icon" type="image/x-icon" href="doge2.ico">
+<script src="https://www.w3schools.com/lib/w3.js"></script>
+<style>a#track-cloud { color:#e17861; }</style>
+</head>
+
+<body>
+<div class="main">
+  <div class="navigation" w3-include-html="navigation.html"></div>
+  <script>w3.includeHTML();</script> 
+
+  <div class="content">
+    <h1 class='tpl-name'></h1>
+	<h2>Cloud Track</h2>
+
+The Cloud Track will evaluate the effectiveness of parallel SAT solvers to run in a distributed manner. 
+This track will be run on Amazon Web Services.
+The solvers participating in this track will be executed with a wall-clock time limit of 1000 seconds running 
+on 100 m4.4xlarge machines in parallel. Each m4.4xlarge machine has 16 virtual CPUs and 64 GB memory. 
+Communication between the machines is possible using MPI and SSH. 
+<BR><BR>
+
+Similar to the Parallel Track, participants of this track are required to submit their solver 
+via a GitHub repository (which can be private). The repository should contain a docker file
+that compiles the solver. Scripts for account configuration and instructions to run HordeSAT
+in the default configuration are available at: 
+<a href="https://github.com/aws-samples/aws-batch-comp-infrastructure-sample">https://github.com/aws-samples/aws-batch-comp-infrastructure-sample</a>.
+We also provide an exmaple repository using the HordeSAT solver:
+<a href="https://github.com/aws-samples/aws-batch-hordesat-sample">https://github.com/aws-samples/aws-batch-hordesat-sample</a>.
+
+<h4>Solver Submission</h4>
+In order to participate in the Cloud Track please send an email to "sat-comp-2021@amazon.com" containing the following:
+<ol>
+<li> name of the solver and a list of the authors
+<li> your AWS account number
+<li> the URL of the GitHub repository including the branch
+<li> the full, 40-character SHA-1 hash of the commit
+</ol>
+
+  </div>
+</div>
+</body>
+</html>

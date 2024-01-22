@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SAT Competition</title>
+<link rel="stylesheet" href="main.css" type="text/css">
+<link rel="icon" type="image/x-icon" href="doge2.ico">
+<script src="https://www.w3schools.com/lib/w3.js"></script>
+<style>a#certificates { color:var(--link-color-2); }</style>
+</head>
+
+<body>
+<div class="main">
+  <div class="navigation" w3-include-html="navigation.html"></div>
+  <div class="heading" w3-include-html="heading.html"></div>
+  <script>w3.includeHTML();</script> 
+
+  <div class="content">
+	<h2>Certified UNSAT</h2>
+	All participants in the Main track of this competition are required to output certificates of unsatisfiablity. 
+	Certificates of unsatisfiability have been required for the UNSAT tracks since SAT Competition 2013. 
+	As of SAT Competition 2023, participants can select from several proof systems and formats. 
+	<br>
+	The following proof checkers are provided and described in the respective documents. 
+	<ul>
+	<li>
+		<a href="downloads/checkers/cakelpr.pdf">Verified LRAT and LPR Proof Checking with cake_lpr</a></br>
+		by Yong Kiam Tan, Marijn J. H. Heule, and Magnus O. Myreen
+	</li>
+	<li>
+		<a href="downloads/checkers/grat.pdf">GRAT: a formally verified (UN)SAT proof checker</a></br>
+		by Peter Lammich
+	</li>
+	<li>
+		<a href="downloads/checkers/veripb.pdf">VeriPB and CakePB: Verified Pseudo-Boolean Proofs</a></br>
+		by Bart Bogaerts, Ciaran McCreesh, Magnus O. Myreen, Jakob Nordström, Andy Oertel, and Yong Kiam Tan
+	</li>
+	</ul>
+
+	<!-- Although resolution proof formats have been supported in the past, 
+	this SAT Competition will only support clausal proofs. The main reason 
+	for this restriction is that no participant in recent years showed any 
+	interest in providing resolution as such proofs as too complicated to 
+	produce and they cost too much space to store.<br>
+
+	The proof format of this SAT Competition is the same as in 2014, i.e., 
+	<a href="http://www.cs.utexas.edu/~marijn/drat-trim/" target="_blank">DRAT</a> 
+	(Delete Resolution Asymmetric Tautologies) which is backwards compatible 
+	with both RUP (Reverse Unit Propagation) and 
+	<a href="http://www.cs.utexas.edu/~marijn/drup/" target="_blank">DRUP</a>.
+	During SAT Competition 2014, a few runs produced proofs of over 100GB, the local storage limit. 
+	Thus, we will also support a <b>binary DRAT format</b>. Details and the checker will be made 
+	available on the <a href="http://www.cs.utexas.edu/~marijn/drat-trim/">DRAT website</a>.
+	</p>
+
+	<p>
+
+	<b>The proof should be written into a (text/binary) file called "proof.out", which is then passed to the verifier.</b> <br> 
+	The output of the solver though should conform to the following rules:
+	<ul>
+	<li> Comment lines are to be prepended by <b>&quot;c &quot;</b></li>
+	<li> In case of UNSAT a proof in the DRAT format should be written into "proof.out"</li>
+	<li> Solution line <b>&quot;s SATISFIABLE&quot;</b> or <b>&quot;s UNSATISFIABLE&quot;</b></li>
+	</ul>
+	The solution line can appear anywhere in the output of the solver, though 
+	the solution &quot;v ...&quot; in case of SAT should appear after the solution line 
+	&quot;s SATISFIABLE&quot; as it is the case in the original specification<br>
+
+	<h3>Certified UNSAT solver output example</h3>
+	<pre>
+	c this is a solver output example
+	c computing ....
+	c statistics ...
+	s UNSATISFIABLE
+	</pre>
+
+	<h3>Format</h3>
+
+	Below, a brief description of the proof format based on an example formula. 
+	The new proof format DRAT is backwards compatible with both the DRUP and RUP formats.
+	More details about DRUP can be found <a href="http://cs.utexas.edu/~marijn/drup/" target="_blank">here</a>.
+
+	The spacing in the examples is to improve readability. Consider the following
+	formula in the DIMACS format.
+	<br><br>
+	<pre>
+	p cnf 4 8
+	 1  2 -3 0
+	-1 -2  3 0
+	 2  3 -4 0
+	-2 -3  4 0
+	 1  3  4 0
+	-1 -3 -4 0
+	-1  2  4 0
+	 1 -2 -4 0
+	</pre>
+	<br>
+
+
+
+
+	A proof of the above formula in the RUP (and thus DRAT) format is:
+	<br><br>
+	<pre>
+	1 2 0
+	1 0
+	2 0
+	0
+	</pre>
+	<br>
+	RUP proofs are a sequence of clauses that are redundant with respect to the input formula. 
+	The check that a clause C is redundant, all literals l in C are assigned to false followed
+	by unit propagation. In order to verify redundancy, unit propagation should result in 
+	a conflict. The redundant clause is added to the formula in case the check is successful.
+	The conflict clauses clauses produced by conflict-driven clause learning (CDCL) solvers
+	have the RUP property. Therefore, a sequence of all conflict clauses (in the order of 
+	learning) is a RUP proof for unsatisfiable formulas. 
+
+	<br><br>
+	One important disadvantage of checking RUP proofs is the cost to verify a proof. 
+	The DRUP format (Delete Reverse Unit 
+	Propagation) was developed to counter this disadvantage. 
+	The DRUP format extends the RUP format by allowing it to express 
+	clause elimination information within the proof format.
+	<br><br>
+	<pre>
+	   1  2  0
+	d  1  2 -3 0
+	   1  0
+	d  1  2  0
+	d  1  3  4 0
+	d  1 -2 -4 0
+	   2  0
+	   0
+	</pre>
+	<br>
+	Apart from the redundant RUP clauses, a DRUP proof may contain lines with a &#39;d&#39;
+	prefix. These lines refer to clauses (original or learned) that can be deleted
+	without influencing the proof checking. In the above example, all the deleted 
+	clauses are subsumed by added RUP clauses. In practice, however, the clauses 
+	that one wants to include in a DRUP proof are the clauses that are removed 
+	while reducing the (learned) clause database.<br><br>
+
+
+	Some state-of-the-art SAT solvers use techniques, such as extended resolution,
+	that cannot be validated using RUP.
+	The DRAT format (Delete Resolution Asymmetric Tautologies) was developed to 
+	deal with this.
+	<br><br>
+	<pre>
+	   1  0
+	d  1  2 -3 0
+	d  1  2  0
+	d  1  3  4 0
+	d  1 -2 -4 0
+	   2  0
+	   0
+	</pre>
+	<br>
+	The syntax of DRAT proofs is identical to DRUP proofs. Lines contain either
+	a &#39;d&#39; expression deletion, or have no prefix expression clause addition.
+
+	<h3>Binary Format</h3>
+
+	<h5>Mapping DIMACS Literals to Unsigned Integers</h5>
+
+	The first step of the binary encoding is mapping literals in 
+	the DIMACS format to unsigned integers. The following mapping function is used:
+	map(l) := (l > 0)? 2*l : -2*l + 1. The mapping for some DIMACS literals are shown below.<BR><BR>
+
+	<pre>     DIMACS literals   unsigned integers
+						  
+					 -63     127
+					 129     258   
+				   -8191   16383
+				   -8193   16387
+	</pre><BR>
+
+	<h5>Variable-Byte Encoding of Unsigned Integers</h5>
+	  
+	  Assume that 'w0, ..., wi' are 7-bit words, 'w1' to 'wi' all non zero and
+	  the unsigned number 'x' can be represented as<BR><BR>
+		
+	<pre>    x = w0 + 2^7*w1 + 2^14*w2 + 2^(7*i)*wi</pre><BR>
+
+	  The variable-byte encoding of DRAT (also used in <A href="http://fmv.jku.at/aiger/">AIGER</A>) is the sequence of 
+	  i bytes b0, ... bi:<BR><BR>
+
+	<pre>    1w0, 1w1, 1w2, ..., 0wi </pre><BR>
+
+	  The MSB of a byte in this sequence signals whether this byte is the last
+	  byte in the sequence, or whether there are still more bytes to follow.
+	  Here are some examples:<BR><BR>
+
+	<pre>    unsigned integer   byte sequence of encoding (in hexadecimal)
+	 
+					   x   b0 b1 b2 b3 b4
+						  
+					   0   00
+					   1   01
+		2^7-1    =   127   7f
+		2^7      =   128   80 01
+		2^8  + 2 =   258   82 02
+		2^14 - 1 = 16383   ff 7f
+		2^14 + 3 = 16387   83 80 01
+		2^28 - 1           ff ff ff 7f
+		2^28 + 7           87 80 80 80 01
+	</pre><br>
+
+	<h5>Bringing it together</h5>
+
+	In the binary DRAT format, each clause consists of at least two bytes. The
+	first byte expresses whether the lemma is added (character 'a' or 61 in 
+	hexadecimal) or deleted (character 'd' or 64 in hexadecimal). The last byte
+	of each lemma is the zero byte (00 in hexadecimal). In between these two 
+	bytes, the literals of the lemma are shown as unsigned integers in the 
+	variable-byte encoding.<BR><BR>
+
+	In the example below, the plain DRAT format requires 26 bytes (including the 
+	new line characters and excluding the redundant spaces in the second lemma), 
+	while the binary DRAT format of the same proof requires only 12 bytes. Emiting
+	proofs in the binary format reduces the size on disk by approximatedly a 
+	factor of three compared to the conventional (plain) DRAT format.<BR><BR>
+
+	<pre>          plain DRAT      binary DRAT (in hexadecimal)
+
+		   d -63 -8193 0      64 7f 83 80 01 00 61 82 02 ff 7f 00 
+			 129 -8191 0
+	</pre>
+  </div> -->
+</div>
+</body>
+</html>
