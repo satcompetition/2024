@@ -59,16 +59,16 @@
 		Consider the <a href="rules.html">general submission guidelines</a> and the <a href="aws.html">AWS submission instructions</a>.
 		All solvers participating in the Parallel track are required to provide a model in the SAT case.
 		The solvers participating in this track will be executed with a wall-clock time limit of 5000 seconds.
-		Each solver will be run an a single AWS machine of the type m4.16xlarge, which has 64 virtual cores and 256GB of memory. 
-		More details about m4.16xlarge nodes can be found 
-		<a href="https://aws.amazon.com/about-aws/whats-new/2016/09/introducing-new-m4-instance-size-m4-16xlarge-and-new-region-availability-of-m4-instances/">here</a>.
-		
+		Each solver will be run an a single AWS machine of the type m6i.16xlarge, which has 64 virtual cores and 256GB of memory. 
+		More details about m6i.16xlarge nodes can be found 
+		<a href="https://aws.amazon.com/about-aws/whats-new/2021/08/amazon-ec2-m6i-instances/">here</a>.
+
 	<h3 id="cloud">Cloud Track</h3>
 		The Cloud track will evaluate the effectiveness of parallel SAT solvers to run in a distributed manner. 
 		This track will be run on Amazon Web Services(AWS).
 		Consider the <a href="rules.html">general submission guidelines</a> and the <a href="aws.html">AWS submission instructions</a>.
 		All solvers participating in the Cloud track are required to provide a model in the SAT case.
-		The solvers participating in this track will be executed with a wall-clock time limit of 1000 seconds running on 100 m4.4xlarge machines in parallel. 
+		The solvers participating in this track will be executed with a wall-clock time limit of 1000 seconds running on 100 m6i.4xlarge machines in parallel. 
 		Each m4.4xlarge machine has 16 virtual CPUs and 64 GB memory. 
 		Communication between the machines is possible using MPI and SSH.
   </div>
