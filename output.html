@@ -39,11 +39,14 @@
 
 	<h2 id="satassign">Satisfying Assignment</h2>
 	Value lines start with a lower case "v" followed by a space. 
-	Values are given as a space-separated list of non-contradictory literals which must be ended by a zero ("0"). 
+	Values are given as a space-separated list of non-contradictory literals. 
 	The negation of a literal is denoted by a minus sign immediately followed by the identifier of the variable. 
-	Value lines provide a model (or an implicant) of the instance, and it is NOT necessary to list the literals corresponding to all variables if a smaller amount of literals suffices to satisfy all clauses. 
+	At least one literal of every clause needs to appear in the value lines. 
+	Note that partial satisfying assignments are allowed.
 	The order of the literals does not matter. 
-	More than one value line is allowed and even necessary if the output would otherwise exceed the maximum line length of 4096 characters. 
+	Value lines can have at most 4096 characters. 
+	So for most problems multiple value lines are necessary.
+	The last value line must be terminated by a "0" (zero) to indicate the end of the satisfying assignment. 
 	
 	<h2 id="unsatcert">Certificates of Unsatisfiablity</h2>
 	All participants in the Main track of this competition are required to output certificates of unsatisfiablity which must be written to a file called "proof.out". 
