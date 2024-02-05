@@ -24,23 +24,22 @@
 	</p>
 	<p>
 	Each Main Track participant (team) is required to submit 20 new benchmark instances (not seen in previous competitions). 
-	At least 10 of those benchmarks should be "interesting": not too easy (solvable by MiniSat in a minute) or 
-	too hard (unsolvable by the participants own solver within one hour on a computer similar to the nodes of the 
-	<a href="https://www.starexec.org/starexec/public/machine-specs.txt">StarExec cluster</a>).
+	At least 10 of those benchmarks should neither be too easy (solvable by MiniSat in a minute) or too hard (unsolvable by the participants own solver within one hour).
 	</p>
-	<p>
-	Participants should submit benchmarks by emailing them to "organizers@satcompetition.org" with the 
-	subject "SAT Competition Benchmark Submission" and either a URL link or attachment of a single archive containing the benchmarks.
-	</p>
+	A 1-2 page benchmark description document, using the <a href="http://www.ieee.org/conferences_events/conferences/publishing/templates.html">IEEE Proceedings style</a>,
+	must be submitted with each submitted benchmark family.
+	The benchmark descriptions will be made available similarly as the solver descriptions (see <a href="rules.html">general rules</a>).
 
 	<h4>Input and Output Format</h4>
-	<p>
-	Benchmarks have to be formatted according to the
-	<a href="http://www.satcompetition.org/2011/format-benchmarks2011.html">SAT Competition 2011 Benchmark Submission Guidelines</a>.
-	A 1-2 page benchmark description document, using the <a href="http://www.ieee.org/conferences_events/conferences/publishing/templates.html">IEEE Proceedings style</a>,
-	must be submitted with each submitted benchmark family, following the instructions for solver descriptions.
-	The benchmark descriptions will be made available similarly as the solver descriptions (see <a href="rules.html">general rules</a>).
-	</p>
+ 	The benchmark file can start with <i>comment lines</i>, i.e. lines beginning with the character <i>c</i>. 
+	After the comments, there is the line <i>p cnf nbvar nbclauses</i> that indicates that the instance is in CNF format, where <i>nbvar</i> is the exact number of variables appearing in the file, and <i>nbclauses</i> is the exact number of clauses contained in the file. 
+	Then the clauses follow. Each clause is a sequence of distinct non-null numbers between -nbvar and nbvar ending with 0 on the same line. 
+	A clause must not contain the opposite literals i and -i simultaneously. 
+	Positive numbers denote the corresponding variables. 
+	Negative numbers denote the negations of the corresponding variables.
+	
+	<!-- Benchmarks have to be formatted according to the
+	<a href="http://www.satcompetition.org/2011/format-benchmarks2011.html">SAT Competition 2011 Benchmark Submission Guidelines</a>. -->
 
 	<h4>Benchmark Selection</h4>
 	<p>

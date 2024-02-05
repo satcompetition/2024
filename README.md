@@ -16,17 +16,16 @@ The 2024 SAT Competition will consist of the following tracks:
 
 ## New This Year
 
-**New SAT Checker**
+**Partial satisfying assignments allowed**
 
-We will replace the satisfying assignments checker that has traditionally been used in SAT competitions with a new checker that is part of the verified GRAT checker. 
-This will allow partial models to be accepted as long as every clause of the original SAT instance is satisfied.
+We will replace the satisfying assignments checker that has traditionally been used in SAT competitions. This will allow partial models to be accepted as long as every clause of the original SAT instance is satisfied. See also https://satcompetition.github.io/2024/output.html#satassign
 
 
 ## Aspects to Highlight
 
 **Bring Your Own Benchmarks (BYOB)**
 
-Each Main track participant (team) is required to submit 20 new benchmark instances (not seen in previous competitions). At least 10 of those benchmarks should be "interesting": not too easy (i.e., not solved by MiniSat within one minute on modern hardware) or not too hard (unsolvable by the participant's own solver within one hour on a computer similar to the nodes of the StarExec cluster).
+Each Main Track participant (team) is required to submit 20 new benchmark instances (not seen in previous competitions). At least 10 of those benchmarks should neither be too easy (solvable by MiniSat in a minute) or too hard (unsolvable by the participants own solver within one hour).
 
 **PAR-2 Scoring Scheme**
 
