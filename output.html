@@ -26,11 +26,11 @@
 	<ul>
 	<li><tt>s SATISFIABLE</tt><br>
 		This indicates that the solver has found a model of the formula. 
-		In such a case, if the track requires <a href="output.html#satassign">satisfying assignments</a>, one or multiple value lines are mandatory.
+		In such a case, and if the track requires satisfying assignments, the output of <a href="output.html#satassign"></a>one or multiple value lines</a> is mandatory.
 	</li>
 	<li><tt>s UNSATISFIABLE</tt><br> 
 		This indicates that the solver has proof that the formula has no model. 
-		In such a case, if the track requires <a href="output.html#unsatcert">UNSAT certificates</a>, the proof must be written to a file called "proof.out", which is then passed to the verifier.
+		In such a case, and if the track requires <a href="output.html#unsatcert">UNSAT certificates</a>, the proof must be written to a file called "proof.out".
 	</li>
 	<li><tt>s UNKNOWN</tt><br>
 		This line must be output in any other case, i.e. when the solver is not able to tell anything about the formula.
@@ -38,8 +38,8 @@
 	</ul>
 
 	<h2 id="satassign">Satisfying Assignment</h2>
-	Value lines start with a lower case "v" followed by a space and must be ended by a "0" zero. 
-	Values are given as a space-separated list of non-contradictory literals. 
+	Value lines start with a lower case "v" followed by a space. 
+	Values are given as a space-separated list of non-contradictory literals which must be ended by a zero ("0"). 
 	The negation of a literal is denoted by a minus sign immediately followed by the identifier of the variable. 
 	Value lines provide a model (or an implicant) of the instance, and it is NOT necessary to list the literals corresponding to all variables if a smaller amount of literals suffices to satisfy all clauses. 
 	The order of the literals does not matter. 
