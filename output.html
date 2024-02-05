@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="main.css" type="text/css">
 <link rel="icon" type="image/x-icon" href="doge2.ico">
 <script src="https://www.w3schools.com/lib/w3.js"></script>
-<style>a#certificates { color:var(--link-color-2); }</style>
+<style>a#output { color:var(--link-color-2); }</style>
 </head>
 
 <body>
@@ -16,12 +16,38 @@
   <script>w3.includeHTML();</script> 
 
   <div class="content">
-	<h2>Certified UNSAT</h2>
-	All participants in the Main track of this competition are required to output certificates of unsatisfiablity. 
-	Certificates of unsatisfiability have been required for the UNSAT tracks since SAT Competition 2013. 
-	As of SAT Competition 2023, participants can select from several proof systems and formats. 
-	<br>
-	The following proof checkers are provided and described in the respective documents. 
+	<h2 id="output">Output Format</h2>
+	All solver output on stdout must either be a <b>comment line</b>, a <b>solution line</b>, or a <b>value line</b>. 
+	Comment lines start with a lower case "c" followed by a space. 
+	Comments are optional and may appear anywhere in the solver output.
+	The solution line is mandatory and must appear exactly once. 
+	The solution line starts with a lower case "s" followed by a space.
+	It must be one of the following answers:
+	<ul>
+	<li><tt>s SATISFIABLE</tt><br>
+		This indicates that the solver has found a model of the formula. 
+		In such a case, if the track requires <a href="output.html#satassign">satisfying assignments</a>, one or multiple value lines are mandatory.
+	</li>
+	<li><tt>s UNSATISFIABLE</tt><br> 
+		This indicates that the solver has proof that the formula has no model. 
+		In such a case, if the track requires <a href="output.html#unsatcert">UNSAT certificates</a>, the proof must be written to a file called "proof.out", which is then passed to the verifier.
+	</li>
+	<li><tt>s UNKNOWN</tt><br>
+		This line must be output in any other case, i.e. when the solver is not able to tell anything about the formula.
+	</li>
+	</ul>
+
+	<h2 id="satassign">Satisfying Assignment</h2>
+	Value lines start with a lower case "v" followed by a space and must be ended by a "0" zero. 
+	Values are given as a space-separated list of non-contradictory literals. 
+	The negation of a literal is denoted by a minus sign immediately followed by the identifier of the variable. 
+	Value lines provide a model (or an implicant) of the instance, and it is NOT necessary to list the literals corresponding to all variables if a smaller amount of literals suffices to satisfy all clauses. 
+	The order of the literals does not matter. 
+	More than one value line is allowed and even necessary if the output would otherwise exceed the maximum line length of 4096 characters. 
+	
+	<h2 id="unsatcert">Certificates of Unsatisfiablity</h2>
+	All participants in the Main track of this competition are required to output certificates of unsatisfiablity which must be written to a file called "proof.out". 
+	Participants can select from the following proof checkers, which are described in the respective documents. 
 	<ul>
 	<li>
 		<a href="downloads/checkers/cakelpr.pdf">Verified LRAT and LPR Proof Checking with cake_lpr</a></br>

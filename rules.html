@@ -18,20 +18,13 @@
   <div class="content">
 	<p>
 	<h2>Mandatory participation requirements for SAT solvers</h2>
-	<ol>
-	<li>The source code of submitted SAT solvers must be made available (licensed for research purposes) except for the solvers participating only in the No-Limits Track.
+	<ul>
+	<li>The source code of submitted SAT solvers must be made available (licensed for research purposes) except for the solvers participating only in the <a href="tracks.html#nolimits">No-limits Track</a>.
 	</li>
-	<li>A 1-2 page system description document (see below for details).
+	<li>A <a href="rules.html#systemdecription">system description document</a> must be submitted with your <a href="rules.html#registration">registration e-mail</a>. The co-authors of a solver in the system description document must match the co-authors listed in your registration e-mail. 
 	</li>
-	<li>The co-authors of a solver in the solver description must match the co-authors listed in the submission system. 
-	</li>
-	<li>SAT solvers must conform to DIMACS input/output requirements 
-	(see <A href="http://www.satcompetition.org/2009/format-benchmarks2009.html">SAT Competition 2009</A> for details).
-	Printing models in case of a satisfiable instance is required for all tracks expect for "no-limits". Additionally, UNSAT certificates (proofs) are required for the main tracks.
-	</li>
-	<li>SAT solvers that are planning to participate in the Main track must be able to produce certificates for UNSAT instances in 
-	tracecheck or DRAT (Delete Resolution Asymmetric Tautologies) format which is backwards compatible with 
-	the <A href="http://www.cs.utexas.edu/~marijn/drup/">DRUP</A> format of SAT Competition 2013.
+	<li>
+	Printing a <a href="output.html#satassign">model in case of a satisfiable instance</a> is required for all tracks expect for "No-limits". Additionally, <a href="output.html#unsatcert">UNSAT certificates (proofs)</a> are required for the Main track.
 	</li>
 	<li>
 	Each Main Track participant (team) is required to submit 20 new benchmark instances (not seen in previous competitions). 
@@ -40,10 +33,10 @@
 	<a href="https://www.starexec.org/starexec/public/machine-specs.txt">StarExec cluster</a>). 
 	See the <a href="benchmarks.html">benchmarks page</a> for more information.
 	</li>
-	</ol>
+	</ul>
 	</p>
 
-	<h2>System Description Document</h2>
+	<h2 id="systemdecription">System Description Document</h2>
 	<p>
 	Each entrant to the SAT Competition <b>must include</b> a short (at least 1, at most 2 pages) description of the system.
 	This should include a list of all authors of the system and their present institutional
@@ -58,42 +51,43 @@
 	Computer Science, University of Helsinki (with ISSN and ISBN numbers).
 	</p>
 
-	<h2>Your E-mail to the Organizers</h2>
+	<h2 id="registration">Solver Registration</h2>
 	<p>
-	In your registration e-mail to the organizers, please include the following information:
-	<ol>
+	Your registration e-mail to the organizers should include the following:
+	<ul>
 	<li>the name of the solver</li>
 	<li>the name(s) of the solver author(s)</li>
 	<li>the tracks in which the solver is to participate</li>
-	<li>the benchmarks or a link to the benchmarks (if applicable)</li>
-	<li>the <b>proof checker</b> to be used for checking unsat proofs (if applicable)</li>
-	<li>attach the solver description document</li>
-	<li>attach the benchmark description document (if applicable)</li>
-	</ol>	
+	<li>the solver description document</li>
+	<li>if applicable, the benchmarks or a link to the benchmarks, and the benchmark description document</li>
+	<li>if applicable, the proof checker to be used for checking unsat proofs</li>
+	</ul>	
 	</p>
 
-<div>
-	<h2>Composition of Solvers</h2>
+
+	<h2 id="composition">Composition of Solvers</h2>
 	<p>
 	SAT Competitions stimulate progress in development and implementation of core SAT solving methods. 
-	<b>Pure Portfolio</b> SAT solvers which are a combination of two or more (core) SAT solvers 
-	developed by different groups of authors are <b>not allowed</b> to participate in the competition.
-	</p>
-	<p>
-	Otherwise, composed solvers must have <b>different solving methodologies</b>, 
+	Pure Portfolios which are a combination of two or more (core) SAT solvers 
+	developed by different groups of authors are not allowed to participate in the competition.
+	Otherwise, solver compositions must have different solving methodologies, 
 	e.g., CDCL, SLS, Lookahead, Groebner Basis, etc., not just different solving strategies.
-	Exempted from this rule are solvers which are singularly, and completely, written by the author(s).
-	</p>
-	<p>
-    There is no need to acquire permission to use the code or to add the original author(s) 
-    of the composed solvers to the published paper, if the copyright allows for this. 
+	Exempted from this rule are solvers which are singularly and completely written by the author(s).
+	If the copyright allows for this, there is no need to acquire permission to use the code or to add the original author(s) 
+    of the composed solvers to the published paper. 
     However, doing it as a courtesy is encouraged, 
-    when this does not interfere with the <b>maximal permitted solvers by the authors</b>.
+    when this does not interfere with the maximal permitted solvers by the authors.
+	<b>The limitations for compositions of solvers do not hold for solvers in the Cloud Track.</b>
 	</p>
+
+	<h2 id="num">Number of submissions</h2>
 	<p>
-		<b>The limitations for compositions of solvers do not hold for solvers in the Cloud Track.</b>
+	Each participant is restricted to be a co-author of at most four different sequential solvers in the Main track, one CaDiCaL hack-track submission, 
+	two different parallel solvers in the Parallel track, and one solver in the Cloud track. 
+	Two solvers are different as soon as their sources differ or the compilation options are different.
+	Solvers are also different if they use different command line options.
+	Authors can select per solver whether to participate in a track or not.
 	</p>
-</div>
 
 	<!--
 	<h2>Mandatory participation requirements for benchmarks</h2>
@@ -114,7 +108,6 @@
 	</p>
 
 	<h2>Disqualification</h2>
-
 	<p>
 	A SAT solver will be disqualified if the solver produces a wrong answer. Specifically, if a solver 
 	reports UNSAT on an instance that was proven to be SAT by some other solver, or SAT and provides a 
@@ -122,45 +115,15 @@
 	Disqualified solvers will be marked as such on the competition results page.
 	</p>
 
-	<p>
-	Note that there is a dedicated period when the participants can check their results to ensure 
-	that no problems are caused by the competition framework.
-	</p>
-	<!--
-	<h2>Certified UNSAT tracks</h2>
-
-	<p>
-	The sequential UNSAT tracks for core solvers are certified, similar to SAT Competition 2013. 
-	In order to participate in these tracks, solvers are required to emit an unsatisfiability proof. 
-	The proofs format of the certified UNSAT tracks is DRAT (Delete Resolution Asymmetric Tautologies)
-	which is backward compatible with <A href="http://www.cs.utexas.edu/~marijn/drup/">DRUP</A> 
-	(Delete Reverse Unit Propagation) and RUP (Reverse Unit Propagation). 
-	In the certified UNSAT tracks, only benchmarks are counted for which the solver emitted a DRAT proof 
-	that can be verified by a <A href="http://www.cs.utexas.edu/~marijn/drat-trim/">DRAT-trim</A> checker 
-	provided by the organization. A proof that is discarded by the checker will not result in disqualification of the solver.
-	</p>
-	-->
 	<h2>Withdrawal</h2>
-
 	<p>
 	A solver can be withdrawn from the SAT Competition only before the deadline for the submission 
 	of the final versions. After this deadline no further changes or withdrawals of the solvers are possible.
 	</p>
 
 	<h2>Participation of the organizers</h2>
-
 	<p>
 	The organizers of this SAT Competition are not allowed to compete.
-	</p>
-
-	<h2 id="num">Number of submissions</h2>
-	<p>
-	Each participant is restricted to be a co-author of at most four different sequential solvers in the Main track, one CaDiCaL hack-track submission, 
-	two different parallel solvers in the Parallel track, and one solver in the Cloud track. 
-	Two solvers are different as soon as their sources differ or the compilation options are different.
-	Solvers are also different if they use different command line options.
-	However, we make an exception for a command line option that enables emitting UNSAT proofs for the certified UNSAT tracks.
-	Authors can select per solver whether to participate in a track or not.
 	</p>
   </div>
 </div>
