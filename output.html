@@ -49,8 +49,9 @@
 	The last value line must be terminated by a "0" (zero) to indicate the end of the satisfying assignment. 
 	
 	<h2 id="unsatcert">Certificates of Unsatisfiablity</h2>
-	All participants in the Main track of this competition are required to output certificates of unsatisfiablity which must be written to a file called "proof.out". 
-	Participants can select from the following proof checkers, which are described in the respective documents. 
+	All participants in the Main track of this competition must output proofs of unsatisfiabiliy, which must be written to a file called <i>proof.out</i>. 
+	Depending on which of the proof checkers DPR, GRAT or VeriPB is selected, <i>proof.out</i> is input to dpr-trim, gratgen or veripb respectively. 
+	The pipelines of verified proof checkers that we provide on StarExec is described in the following documents.
 	<ul>
 	<li>
 		<a href="downloads/checkers/cakelpr.pdf">Verified LRAT and LPR Proof Checking with cake_lpr</a></br>
