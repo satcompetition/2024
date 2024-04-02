@@ -7,7 +7,7 @@ import pandas as pd
 
 class StarExecCheckerPipeline:
 
-    def __init__(self, check_model = 737760, check_proof_pre = 737767, check_proof_post = 737762):
+    def __init__(self, check_model = 729414, check_proof_pre = 729411, check_proof_post = 729419):
         self.check_model = check_model
         self.check_proof_pre = check_proof_pre
         self.check_proof_post = check_proof_post
@@ -24,12 +24,12 @@ class StarExecJob:
     # @param memout Memory limit for the solver (in MB)
     def __init__(self, 
         name: str, 
-        #queue_id: int = 186899, # SAT Comp. 2023
+        queue_id: int = 220893, # satcomp.q
         #queue_id: int = 88797, # long.q
-        queue_id: int = 1, # all.q
-        global_timeout: int = 1800, 
-        cpu_timeout: int = 600, 
-        wallclock_timeout: int = 1200, 
+        #queue_id: int = 1, # all.q
+        global_timeout: int = 45000, 
+        cpu_timeout: int = 5000, 
+        wallclock_timeout: int = 6000, 
         memout: int = 128, 
         pipeline: StarExecCheckerPipeline = StarExecCheckerPipeline()
     ):
@@ -101,20 +101,23 @@ class StarExecJob:
 
 
 def main():
-    cid_checkmodel = 737760
+    #cid_checkmodel = 771360
+    cid_checkmodel = 771355 # gratchk sat
 
-    cid_drat_trim = 737767
-    cid_drat_trim_bin = 737769
-    cid_dpr_trim = 737765
-    cid_dpr_trim_bin = 737764
-    cid_cake_lpr = 737762
+    cid_drat_trim = 771363
+    cid_drat_trim_bin = 771354
+    cid_dpr_trim = 771357
+    cid_dpr_trim_bin = 771358
+    cid_cake_lpr = 771364
 
-    cid_gratgen = 737766
-    cid_gratgen_bin = 737759
-    cid_gratchk = 737768
+    cid_gratgen = 771352
+    cid_gratgen_bin = 771356
+    #cid_gratchk = 771351
+    cid_gratchk = 771365 # 64 GB RAM
+    #cid_gratchk = 771350 # 120 GB RAM
 
-    cid_veripb = 737761
-    cid_cakepb = 737770
+    cid_veripb = 771361
+    cid_cakepb = 771353
 
     drat = StarExecCheckerPipeline(cid_checkmodel, cid_drat_trim, cid_cake_lpr)
     dratbin = StarExecCheckerPipeline(cid_checkmodel, cid_drat_trim_bin, cid_cake_lpr)
