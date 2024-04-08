@@ -102,22 +102,22 @@ class StarExecJob:
 
 def main():
     #cid_checkmodel = 771360
-    cid_checkmodel = 771355 # gratchk sat
+    cid_checkmodel = 771392 # gratchk sat
 
-    cid_drat_trim = 771363
-    cid_drat_trim_bin = 771354
-    cid_dpr_trim = 771357
-    cid_dpr_trim_bin = 771358
-    cid_cake_lpr = 771364
+    cid_drat_trim = 771385
+    cid_drat_trim_bin = 771390
+    cid_dpr_trim = 771391
+    cid_dpr_trim_bin = 771378
+    cid_cake_lpr = 771381
 
-    cid_gratgen = 771352
-    cid_gratgen_bin = 771356
+    cid_gratgen = 771382
+    cid_gratgen_bin = 771386
     #cid_gratchk = 771351
-    cid_gratchk = 771365 # 64 GB RAM
+    cid_gratchk = 771384 # 64 GB RAM
     #cid_gratchk = 771350 # 120 GB RAM
 
-    cid_veripb = 771361
-    cid_cakepb = 771353
+    cid_veripb = 771389
+    cid_cakepb = 771380
 
     drat = StarExecCheckerPipeline(cid_checkmodel, cid_drat_trim, cid_cake_lpr)
     dratbin = StarExecCheckerPipeline(cid_checkmodel, cid_drat_trim_bin, cid_cake_lpr)
